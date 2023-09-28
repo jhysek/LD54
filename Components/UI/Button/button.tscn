@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpm7fxu8ovn6y"]
+
+[ext_resource type="Theme" uid="uid://bwlg4hp8pkxhf" path="res://Assets/Styles/game_theme.tres" id="1_yfsrb"]
+[ext_resource type="Script" path="res://Components/UI/Button/button.gd" id="2_6wnai"]
+
+[node name="StarButton" type="Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = -28.0
+offset_right = 106.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yfsrb")
+text = "Start game"
+script = ExtResource("2_6wnai")
+
+[node name="Sfx" type="Node" parent="."]
+
+[node name="Hover" type="AudioStreamPlayer" parent="Sfx"]
+
+[node name="Click" type="AudioStreamPlayer" parent="Sfx"]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="finished" from="Sfx/Click" to="." method="_on_click_finished"]

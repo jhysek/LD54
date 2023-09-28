@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bwlg4hp8pkxhf"]
+
+[ext_resource type="FontFile" uid="uid://cxsgcxrp0twbk" path="res://Assets/Fonts/dizzyedgeDEMO.otf" id="1_v4f1t"]
+[ext_resource type="StyleBox" uid="uid://bk2ns75x1r00a" path="res://Assets/Styles/button_normal.tres" id="2_3ml78"]
+[ext_resource type="StyleBox" uid="uid://duamfel3flyox" path="res://Assets/Styles/button_hover.tres" id="3_gj015"]
+
+[resource]
+default_font = ExtResource("1_v4f1t")
+Button/font_sizes/font_size = 25
+Button/fonts/font = ExtResource("1_v4f1t")
+Button/styles/focus = ExtResource("2_3ml78")
+Button/styles/hover = ExtResource("3_gj015")
+Button/styles/normal = ExtResource("2_3ml78")
+Button/styles/pressed = ExtResource("3_gj015")
