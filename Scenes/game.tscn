@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3datkyaooy1e"]
+[gd_scene load_steps=5 format=3 uid="uid://d3datkyaooy1e"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_ppnei"]
+[ext_resource type="PackedScene" uid="uid://bg11qe7jf7od4" path="res://Components/GameObjects/Mover/mover.tscn" id="2_0vbdw"]
+[ext_resource type="PackedScene" uid="uid://dveedycejhwcf" path="res://Components/GameObjects/Apartment/apartment.tscn" id="2_qsjlf"]
+[ext_resource type="PackedScene" uid="uid://c8i0igyc1316r" path="res://Components/GameObjects/Furniture/furniture.tscn" id="4_t3qsi"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ppnei")
+
+[node name="Apartment" parent="." instance=ExtResource("2_qsjlf")]
+position = Vector2(-2, 6)
+layer_0/tile_data = PackedInt32Array(131074, 0, 0, 0, 0, 0, -65536, 0, 0, 1, 0, 0, 65536, 0, 0, 131072, 0, 0, 65537, 0, 0, 2, 0, 0, 65538, 0, 0, 3, 0, 0, -65535, 0, 0, -1, 0, 0, -65534, 0, 0, 65539, 0, 0, 65535, 0, 0, 196607, 0, 0, -131072, 0, 0, -262142, 0, 0, -196606, 0, 0, -262141, 0, 0, -131070, 0, 0, -131071, 0, 0, -131069, 0, 0, -196604, 0, 0, -65533, 0, 0, 262142, 0, 0, 196606, 0, 0, 131070, 0, 0, 196605, 0, 0, 262141, 0, 0, 131071, 0, 0, 65534, 0, 0, 65533, 0, 0, 65532, 0, 0, -3, 0, 0, -2, 0, 0, -65537, 0, 0, -196608, 0, 0, -131073, 0, 0, -65538, 0, 0, 131069, 0, 0, 131075, 0, 0, 196610, 0, 0, -65539, 0, 0, -262144, 0, 0, -262143, 0, 0, -4, 0, 0, 131068, 0, 0, 196604, 0, 0, 262140, 0, 0, 327676, 0, 0, 327677, 0, 0, 262143, 0, 0, 196608, 0, 0, 327679, 0, 0, 327678, 0, 0, 393214, 0, 0, 262139, 0, 0, 196602, 0, 0, 131066, 0, 0, 65530, 0, 0, 65531, 0, 0, -5, 0, 0, 131067, 0, 0, 196603, 0, 0, 327675, 0, 0, 393212, 0, 0, 393213, 0, 0)
+
+[node name="Mover" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("2_0vbdw")]
+z_index = 1
+position = Vector2(-1, 256)
+map = NodePath("..")
+
+[node name="Furniture" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("4_t3qsi")]
+map = NodePath("..")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(377, 161)
+zoom = Vector2(0.5, 0.5)

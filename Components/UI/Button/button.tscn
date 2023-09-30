@@ -22,6 +22,7 @@ script = ExtResource("2_6wnai")
 [node name="Sfx" type="Node" parent="."]
 
 [node name="Hover" type="AudioStreamPlayer" parent="Sfx"]
+max_polyphony = 2
 
 [node name="Click" type="AudioStreamPlayer" parent="Sfx"]
 

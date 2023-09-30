@@ -17,7 +17,7 @@ void fragment(){
     vec2 i_uv = floor(uv);
     vec2 f_uv = fract(uv);
     
-    float wave = max(0.,i_uv.x/(a.x) - position);
+    float wave = max(0.,i_uv.y/(a.y) - position);  // Change i_uv.x to i_uv.y
     
     vec2 center = f_uv*2.-1.;
     float circle = length(center);

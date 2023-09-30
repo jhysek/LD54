@@ -1,17 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0dq85cqfdvot"]
+[gd_scene load_steps=10 format=3 uid="uid://d0dq85cqfdvot"]
 
 [ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="1_c55u7"]
 [ext_resource type="Script" path="res://Scenes/menu.gd" id="1_gtbeh"]
 [ext_resource type="FontFile" uid="uid://cxsgcxrp0twbk" path="res://Assets/Fonts/dizzyedgeDEMO.otf" id="2_gtt2h"]
 [ext_resource type="Texture2D" uid="uid://coxcgvy2ynlbp" path="res://Assets/Graphics/light.png" id="3_inyya"]
 [ext_resource type="PackedScene" uid="uid://cpm7fxu8ovn6y" path="res://Components/UI/Button/button.tscn" id="4_icwuc"]
+[ext_resource type="Shader" path="res://Shaders/plasma.gdshader" id="6_cfd41"]
 
-[sub_resource type="Environment" id="Environment_osh67"]
-background_mode = 3
-background_energy_multiplier = 4.09
-glow_enabled = true
-glow_intensity = 2.23
-glow_bloom = 0.19
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0edfc"]
+shader = ExtResource("6_cfd41")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ocfnm"]
 shader = ExtResource("1_c55u7")
@@ -22,13 +19,10 @@ shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_xs1ns"]
 font = ExtResource("2_gtt2h")
 font_size = 50
-font_color = Color(0.796078, 0.698039, 0.72549, 0.733333)
+font_color = Color(0.54902, 0.729412, 0.952941, 0.807843)
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_gtbeh")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_osh67")
 
 [node name="ScreenLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -40,6 +34,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.192157, 0.207843, 0.211765, 1)
+
+[node name="Signal" type="ColorRect" parent="ScreenLayer"]
+material = SubResource("ShaderMaterial_0edfc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Vignette" type="ColorRect" parent="ScreenLayer"]
 material = SubResource("ShaderMaterial_ocfnm")
@@ -56,7 +58,7 @@ offset_top = 66.0
 offset_bottom = 120.0
 grow_horizontal = 2
 size_flags_vertical = 0
-text = "Game Title"
+text = "LIMITED SPACE"
 label_settings = SubResource("LabelSettings_xs1ns")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -68,6 +70,10 @@ texture = ExtResource("3_inyya")
 offset = Vector2(17, 525)
 
 [node name="Start" parent="ScreenLayer" instance=ExtResource("4_icwuc")]
+offset_left = -97.0
+offset_top = 150.0
+offset_right = 120.0
+offset_bottom = 213.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

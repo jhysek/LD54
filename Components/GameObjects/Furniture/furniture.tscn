@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8i0igyc1316r"]
+
+[ext_resource type="Script" path="res://Components/GameObjects/Furniture/furniture.gd" id="1_jl8e4"]
+[ext_resource type="Texture2D" uid="uid://cvoue6jm7t00t" path="res://Components/GameObjects/Furniture/tester.png" id="2_ukurg"]
+[ext_resource type="Texture2D" uid="uid://c431p4ooshyin" path="res://Components/GameObjects/Indicator/indicator.png" id="3_j7bax"]
+
+[sub_resource type="Animation" id="Animation_q1dii"]
+resource_name = "Pick"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2.82843, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -49), Vector2(2.08165e-12, -70)]
+}
+
+[sub_resource type="Animation" id="Animation_nks1j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -49)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfoov"]
+_data = {
+"Pick": SubResource("Animation_q1dii"),
+"RESET": SubResource("Animation_nks1j")
+}
+
+[node name="Furniture" type="Node2D" groups=["Blocker"]]
+position = Vector2(-4, -2)
+script = ExtResource("1_jl8e4")
+sprite_idx = 3
+
+[node name="Visual" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -49)
+
+[node name="Sprite" type="Sprite2D" parent="Visual"]
+z_index = 1
+texture = ExtResource("2_ukurg")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 154, 208)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 0.180392)
+position = Vector2(0, 8)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_j7bax")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bfoov")
+}

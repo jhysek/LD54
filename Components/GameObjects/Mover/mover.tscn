@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg11qe7jf7od4"]
+
+[ext_resource type="Script" path="res://Components/GameObjects/Mover/mover.gd" id="1_hb6x3"]
+[ext_resource type="Texture2D" uid="uid://ce78d85p7awao" path="res://icon.svg" id="1_stdd7"]
+[ext_resource type="Texture2D" uid="uid://lqqinbkadlyr" path="res://Components/GameObjects/Mover/up.png" id="3_vwqt1"]
+[ext_resource type="Texture2D" uid="uid://btrqui80nffa6" path="res://Components/GameObjects/Mover/down.png" id="4_g7gv0"]
+[ext_resource type="Texture2D" uid="uid://7a4b1d73yvdt" path="res://Components/GameObjects/Mover/left.png" id="5_1ikvo"]
+[ext_resource type="Texture2D" uid="uid://5ys8breygprk" path="res://Components/GameObjects/Mover/right.png" id="6_31vap"]
+
+[node name="Mover" type="Node2D" groups=["Blocker"]]
+position = Vector2(0, 2)
+script = ExtResource("1_hb6x3")
+
+[node name="Visual" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="Sprite" type="Sprite2D" parent="Visual"]
+visible = false
+position = Vector2(2, -3)
+scale = Vector2(1.01332, 1.00618)
+texture = ExtResource("1_stdd7")
+
+[node name="Direction" type="Node2D" parent="Visual"]
+
+[node name="Up" type="Sprite2D" parent="Visual/Direction"]
+visible = false
+texture = ExtResource("3_vwqt1")
+
+[node name="Down" type="Sprite2D" parent="Visual/Direction"]
+visible = false
+texture = ExtResource("4_g7gv0")
+
+[node name="Left" type="Sprite2D" parent="Visual/Direction"]
+visible = false
+texture = ExtResource("5_1ikvo")
+
+[node name="Right" type="Sprite2D" parent="Visual/Direction"]
+visible = false
+texture = ExtResource("6_31vap")
+
+[node name="Indicator" type="Node2D" parent="."]
+position = Vector2(1, 0)
+
+[node name="Attachment" type="Node2D" parent="."]

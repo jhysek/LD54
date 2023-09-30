@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://clb1calvqo18f"]
+
+[ext_resource type="Texture2D" uid="uid://c431p4ooshyin" path="res://Components/GameObjects/Indicator/indicator.png" id="1_76l5k"]
+
+[node name="Indicator" type="Sprite2D"]
+modulate = Color(0.392157, 1, 1, 0.580392)
+texture = ExtResource("1_76l5k")
+offset = Vector2(2.08165e-12, 2.08165e-12)
