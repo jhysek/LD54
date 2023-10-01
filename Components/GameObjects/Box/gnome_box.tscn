@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://rctxiilk5g5c"]
+
+[ext_resource type="PackedScene" uid="uid://c8i0igyc1316r" path="res://Components/GameObjects/Furniture/furniture.tscn" id="1_6n7hy"]
+[ext_resource type="Script" path="res://Components/GameObjects/GnomeBox/gnome_box.gd" id="2_rpk8y"]
+[ext_resource type="Texture2D" uid="uid://c2rq5b54y6fvm" path="res://Components/GameObjects/Box/box.png" id="3_2l4vo"]
+
+[node name="Box" instance=ExtResource("1_6n7hy")]
+script = ExtResource("2_rpk8y")
+sprite_idx = 0
+
+[node name="Visual" parent="." index="0"]
+texture = ExtResource("3_2l4vo")
+region_rect = Rect2(0, 2.08165e-12, 204, 252)

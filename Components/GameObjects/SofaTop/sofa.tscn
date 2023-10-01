@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1wqknj32y3gv"]
+
+[ext_resource type="PackedScene" uid="uid://c8i0igyc1316r" path="res://Components/GameObjects/Furniture/furniture.tscn" id="1_6tqhp"]
+[ext_resource type="Script" path="res://Components/GameObjects/Sofa/sofa.gd" id="2_rdv3d"]
+[ext_resource type="Texture2D" uid="uid://bhxxr7qhev8m3" path="res://Components/GameObjects/Sofa/sofa_top.png" id="3_ycyl2"]
+
+[node name="Sofa" instance=ExtResource("1_6tqhp")]
+z_index = 1
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("2_rdv3d")
+DEBUG = null
+sprite_idx = null
+
+[node name="Visual" parent="." index="0"]
+position = Vector2(117, 3)
+
+[node name="Sprite" parent="Visual" index="0"]
+position = Vector2(-119.335, -0.901276)
+texture = ExtResource("3_ycyl2")
+offset = Vector2(119.335, 0.895949)
+region_enabled = false
+region_rect = Rect2(588, 2.08165e-12, 294, 248)
+
+[node name="Shadow" parent="." index="1"]
+visible = false
+position = Vector2(0, -7)
+
+[node name="Indicator" type="Node2D" parent="." index="2"]
+
+[node name="MarkerFirst" type="Marker2D" parent="." index="3"]
+position = Vector2(84, 14)
+gizmo_extents = 20.0
+
+[node name="MarkerSecond" type="Marker2D" parent="." index="4"]
+position = Vector2(-53, -55)
+gizmo_extents = 20.0

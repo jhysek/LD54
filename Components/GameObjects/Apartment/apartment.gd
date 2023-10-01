@@ -1,7 +1,7 @@
 extends TileMap
 
 var offset = Vector2(0, -30)
-
+		
 func is_room_for(object, start_pos, shape):
 	return is_room_for_shape(start_pos, shape) and !is_shape_blocked(object, start_pos, shape)
 	
@@ -41,7 +41,7 @@ func is_pos_blocked(blockers, map_pos):
 	return blockers.has(map_pos)
 
 func map_to_world(map_pos):
-	return map_to_local(map_pos) + offset
+	return Vector2(map_to_local(map_pos) + offset)
 	
 func world_to_map(world_pos):
 	return local_to_map(world_pos - offset)

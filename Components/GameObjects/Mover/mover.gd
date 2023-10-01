@@ -1,8 +1,11 @@
 extends Node2D
 
+const JUMP_DURATION = 0.2
+
 var Indicator = load("res://Components/GameObjects/Indicator/indicator.tscn")
 
 @export var map: TileMap
+@export var turtle_controls = true
 
 var moving = false
 var map_pos = Vector2i(0,0)
@@ -14,31 +17,56 @@ var shape = [
 	Vector2i(0,0)
 	#Vector2i(0, -1),
 	#Vector2i(0, -2),
-	#Vector2i(1, -2)
 ]
 
 func _ready():
 	map_pos = map.world_to_map(position)
+	#z_index = map_pos.y
 	position = map.map_to_world(map_pos)
 	set_process_input(true)
 	draw_indicator()
 	draw_direction()
 
-func _input(event):	
-	if moving: 
-		return
+func _input(event):		
+	var v2dir = Vector2(direction)
+	
+	if turtle_controls:			
+		if event.is_action_pressed('ui_left'):
+			rotate_to(-PI/2.0)
+		
+		if event.is_action_pressed('ui_right'):
+			rotate_to(PI/2.0)
+		
+		if event.is_action_pressed('ui_up'):
+			move_to(map_pos + direction)
+		
+		if event.is_action_pressed('ui_down'):
+			move_to(map_pos - direction)
+	else:
+		if event.is_action_pressed('ui_left'):
+			if direction == Vector2i.LEFT:
+				move_to(map_pos + direction)
+			else:
+				rotate_to(v2dir.angle_to(Vector2.LEFT))
 			
-	if event.is_action_pressed('ui_left'):
-		rotate_to(-PI/2.0)
-		
-	if event.is_action_pressed('ui_right'):
-		rotate_to(PI/2.0)
-		
-	if event.is_action_pressed('ui_up'):
-		move_to(map_pos + direction)
-		
-	if event.is_action_pressed('ui_down'):
-		move_to(map_pos - direction)
+		if event.is_action_pressed('ui_right'):
+			if direction == Vector2i.RIGHT:
+				move_to(map_pos + direction)
+			else:
+				rotate_to(v2dir.angle_to(Vector2.RIGHT))
+			
+		if event.is_action_pressed('ui_up'):
+			if direction == Vector2i.UP:
+				move_to(map_pos + direction)
+			else:
+				rotate_to(v2dir.angle_to(Vector2.UP))
+			
+		if event.is_action_pressed('ui_down'):
+			if direction == Vector2i.DOWN:
+				move_to(map_pos + direction)
+			else:
+				rotate_to(v2dir.angle_to(Vector2.DOWN))
+	
 		
 	if event.is_action_pressed('ui_accept'):
 		if attached_object:
@@ -50,14 +78,32 @@ func _input(event):
 func pick(object):
 	object.reparent($Attachment)
 	attached_object = object
-	attached_object.pick()
+	attached_object.pick(map_pos + direction)
+	attach_shape(object)
+	draw_indicator()
+	$AnimationPlayer.play("Hold")
 	draggable = null 
 	
 func drop():
 	attached_object.reparent(get_parent())
-	attached_object.drop()
+	attached_object.drop(attachable_shape())
 	attached_object = null 
+	shape = [Vector2i(0,0)]
+	$AnimationPlayer.play("Idle")
+	draw_indicator()
 	check_draggables()
+	
+func attachable_shape():
+	var new_shape = []
+	for shape_pos in shape:
+		if shape_pos != Vector2i(0,0):
+			new_shape.append(shape_pos - direction + attached_object.pick_offset)
+	return new_shape
+	
+func attach_shape(object):
+	for shape_pos in object.shape:
+		var relative_pos = object.map_pos + shape_pos - map_pos
+		shape.append(relative_pos) 
 	
 func draw_indicator():
 	for old_indicator in $Indicator.get_children():
@@ -71,15 +117,24 @@ func draw_indicator():
 func draw_direction():
 	for child in $Visual/Direction.get_children():
 		child.hide()
-	
+
+	$Visual/Back.hide()
+	$Visual/Front.show()
+		
 	if direction == Vector2i.UP:
 		$Visual/Direction/Up.show()
+		$Visual/Back.scale.x = 1
+		$Visual/Back.show()
+		$Visual/Front.hide()
 	if direction == Vector2i.DOWN:
 		$Visual/Direction/Down.show()
+		$Visual/Front.scale.x = 1
 	if direction == Vector2i.LEFT:
 		$Visual/Direction/Left.show()
+		$Visual/Front.scale.x = -1
 	if direction == Vector2i.RIGHT:
 		$Visual/Direction/Right.show()
+		$Visual/Front.scale.x = 1
 		
 func in_direction(jump_vector: Vector2i):
 	return (jump_vector.y == 0 and direction.y == 0) \
@@ -97,6 +152,12 @@ func rotate_to(angle):
 		draw_indicator()
 		draw_direction()
 		check_draggables()
+		if attached_object != null:
+			var obj_positions = []
+			for shape_pos in shape:
+				if shape_pos != Vector2i(0,0):
+					obj_positions.append(map.map_to_world(map_pos + shape_pos))
+			attached_object.set_positions(obj_positions, angle)
 	else:
 		print("NO ROOM FOR ROTATE")
 
@@ -108,19 +169,31 @@ func move_to(new_map_pos: Vector2i):
 		
 func jump_to_map_pos(new_map_pos: Vector2i):
 	moving = true
-	
+	#z_index = new_map_pos.y
+	$AnimationPlayer.play("Jump")
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(self, 'position', map.map_to_world(new_map_pos), 0.3)
+	tween.tween_property(self, 'position', map.map_to_world(new_map_pos), JUMP_DURATION)
 	tween.tween_callback(func():
 		map_pos = new_map_pos
 		moving = false
 		draggable = null
 		if attached_object == null:
-			check_draggables())
-	
+			check_draggables()
+		else:
+			var obj_positions = []
+			for shape_pos in shape:
+				if shape_pos != Vector2i(0,0):
+					obj_positions.append(map.map_to_world(map_pos + shape_pos))
+			attached_object.set_positions(obj_positions, 0))
+
 func check_draggables():
 	draggable = map.object_at(map_pos + direction)
 	if draggable != null:
 		print("OBJECT AHEAD: " + str(draggable.name))
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if !attached_object and !anim_name == "Hold":
+		$AnimationPlayer.play("Idle")

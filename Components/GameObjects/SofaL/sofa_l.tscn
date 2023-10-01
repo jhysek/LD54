@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://br53bsdoi1yl0"]
+
+[ext_resource type="PackedScene" uid="uid://b1wqknj32y3gv" path="res://Components/GameObjects/Sofa/sofa.tscn" id="1_jamdx"]
+[ext_resource type="Script" path="res://Components/GameObjects/SofaL/sofa_l.gd" id="2_t13g4"]
+
+[node name="SofaL" instance=ExtResource("1_jamdx")]
+script = ExtResource("2_t13g4")
