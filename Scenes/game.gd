@@ -3,6 +3,7 @@ extends Node2D
 var steps = 0
 
 func _ready():
+	$Screen.show()
 	$Screen/Finished.modulate = Color('ffffff', 0)
 	$Screen/Finished/StarButton.active = false 
 	Transition.openScene()

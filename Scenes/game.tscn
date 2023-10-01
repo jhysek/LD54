@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d3datkyaooy1e"]
+[gd_scene load_steps=22 format=3 uid="uid://d3datkyaooy1e"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_ppnei"]
 [ext_resource type="PackedScene" uid="uid://bg11qe7jf7od4" path="res://Components/GameObjects/Mover/mover.tscn" id="2_0vbdw"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://c8i0igyc1316r" path="res://Components/GameObjects/Furniture/furniture.tscn" id="12_31jnj"]
 [ext_resource type="PackedScene" uid="uid://b1wqknj32y3gv" path="res://Components/GameObjects/Sofa/sofa.tscn" id="13_gish6"]
 [ext_resource type="PackedScene" uid="uid://cpm7fxu8ovn6y" path="res://Components/UI/Button/button.tscn" id="13_tmt6y"]
+[ext_resource type="PackedScene" uid="uid://c63xeixsd2cy0" path="res://Components/GameObjects/Bed/bed.tscn" id="13_yg2nh"]
+[ext_resource type="PackedScene" uid="uid://bf5e2s1x2m2lu" path="res://Components/GameObjects/WardrobeBig/big_wardrobe.tscn" id="14_he2h1"]
 [ext_resource type="AudioStream" uid="uid://64cs4o7af3fj" path="res://Assets/Audio/music.mp3" id="15_0i28a"]
 
 [sub_resource type="Animation" id="Animation_21tl0"]
@@ -96,7 +98,11 @@ position = Vector2(1544, 1152)
 map = NodePath("..")
 
 [node name="SofaL" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("7_untwi")]
-position = Vector2(-8, 114)
+position = Vector2(-640, 1368)
+map = NodePath("..")
+
+[node name="SofaL2" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("7_untwi")]
+position = Vector2(768, 552)
 map = NodePath("..")
 
 [node name="Box2" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("7_4xfpn")]
@@ -112,7 +118,7 @@ position = Vector2(512, 701)
 map = NodePath("..")
 
 [node name="Wardrobe" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("11_fldrk")]
-position = Vector2(-392, 1072)
+position = Vector2(-16, 1000)
 map = NodePath("..")
 
 [node name="Label" type="Label" parent="Apartment"]
@@ -150,11 +156,24 @@ map = NodePath("..")
 position = Vector2(-920, 1080)
 map = NodePath("..")
 
+[node name="Bed" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("13_yg2nh")]
+position = Vector2(-1152, 1240)
+map = NodePath("..")
+
+[node name="Bed2" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("13_yg2nh")]
+position = Vector2(-1032, 1160)
+map = NodePath("..")
+
+[node name="BigWardrobe" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("14_he2h1")]
+position = Vector2(368, 192)
+map = NodePath("..")
+
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(171, 648)
 zoom = Vector2(0.3, 0.3)
 
 [node name="Screen" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Vignette" parent="Screen" instance=ExtResource("6_7ieui")]
 

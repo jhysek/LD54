@@ -10,7 +10,7 @@ func _init():
 		Vector2i(0,1)
 	]
 	
-	shape_size = Vector2(294, 248)
+	shape_size = Vector2(306, 248)
 	super()
 
 func pick(from_pos):
@@ -31,20 +31,20 @@ func set_positions(positions, _angle = 0):
 	
 	pick_offset = Vector2i(Vector2(pick_offset).rotated(_angle).round())
 	
-	if positions[0].x < positions[1].x and positions[0].y > positions[1].y:
-		$Visual.position = map.map_to_world(Vector2i(1,-1)) / 2
+	if positions[0].x < positions[1].x and positions[0].y > positions[1].y: 
+		$Visual.position = map.map_to_world(Vector2i(1,-1)) / 2 - Vector2(0, 20)
 		sprite_idx = 3
 		
 	if positions[0].x > positions[1].x and positions[0].y > positions[1].y:
-		$Visual.position = map.map_to_world(Vector2i(0,-2)) / 2
+		$Visual.position = map.map_to_world(Vector2i(0,-2)) / 2 - Vector2(0, 20)
 		sprite_idx = 2
 		
 	if positions[0].x > positions[1].x and positions[0].y < positions[1].y:
-		$Visual.position = map.map_to_world(Vector2i(-1, -1)) / 2
+		$Visual.position = map.map_to_world(Vector2i(-1, -1)) / 2 - Vector2(0, 20)
 		sprite_idx = 1
 		
 	if positions[0].x < positions[1].x and positions[0].y < positions[1].y:
-		$Visual.position = map.map_to_world(Vector2(0,0)) / 2
+		$Visual.position = map.map_to_world(Vector2(0,0)) / 2 - Vector2(0, 20)
 		sprite_idx = 0
 		
 	set_region()

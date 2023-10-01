@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c8i0igyc1316r" path="res://Components/GameObjects/Furniture/furniture.tscn" id="1_6tqhp"]
 [ext_resource type="Script" path="res://Components/GameObjects/Sofa/sofa.gd" id="2_rdv3d"]
-[ext_resource type="Texture2D" uid="uid://cc06p44vhixun" path="res://Components/GameObjects/SofaTop/sofa.png" id="3_5tp7a"]
+[ext_resource type="Texture2D" uid="uid://cc06p44vhixun" path="res://Components/GameObjects/Sofa/sofa.png" id="3_ow4bo"]
 
 [node name="Sofa" instance=ExtResource("1_6tqhp")]
 z_index = 1
@@ -13,9 +13,9 @@ sprite_idx = 0
 
 [node name="Visual" parent="." index="0"]
 y_sort_enabled = true
-position = Vector2(71, 0)
-texture = ExtResource("3_5tp7a")
-region_rect = Rect2(2.08165e-12, 2.08165e-12, 295, 248)
+position = Vector2(71, -9)
+texture = ExtResource("3_ow4bo")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 306, 248)
 
 [node name="Shadow" parent="." index="1"]
 visible = false

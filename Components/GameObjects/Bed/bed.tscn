@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://c63xeixsd2cy0"]
+
+[ext_resource type="PackedScene" uid="uid://b1wqknj32y3gv" path="res://Components/GameObjects/Sofa/sofa.tscn" id="1_ebs0v"]
+[ext_resource type="Script" path="res://Components/GameObjects/Bed/bed.gd" id="2_8us8o"]
+[ext_resource type="Texture2D" uid="uid://s3q8txlrhckg" path="res://Components/GameObjects/Bed/bed.png" id="2_aynsi"]
+
+[node name="Bed" instance=ExtResource("1_ebs0v")]
+script = ExtResource("2_8us8o")
+
+[node name="Visual" parent="." index="0"]
+texture = ExtResource("2_aynsi")
