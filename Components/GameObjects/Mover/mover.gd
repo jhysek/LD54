@@ -100,6 +100,8 @@ func drop():
 	
 	print("ATTACHABLE POS: " + str(attached_object.map_pos))
 		
+	
+		
 	attached_object = null 
 	shape = [Vector2i(0,0)]
 	$AnimationPlayer.play("Idle")
@@ -107,10 +109,12 @@ func drop():
 	check_draggables()
 	
 func attachable_shape():
+	print("PLAYER SHAPE: " + str(shape) + " player direction: " + str(direction) + "  pick offset: " + str(attached_object.pick_offset))
 	var new_shape = []
 	for shape_pos in shape:
 		if shape_pos != Vector2i(0,0):
 			new_shape.append(shape_pos - direction + attached_object.pick_offset)
+	print("EXTRACTED SHAPE: " + str(new_shape))
 	return new_shape
 	
 func attach_shape(object):

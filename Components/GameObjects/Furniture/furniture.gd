@@ -21,6 +21,16 @@ func _ready():
 	calc_zindex()
 	shape_size = $Visual.region_rect.size
 	set_region()
+	$Visual.offset.y = -2000
+	$Timer.wait_time = 0.4 + z_index * 0.001 # 0.8 + 0.1 * map_pos.y
+	$Timer.start()
+	
+	
+func fall_down():
+	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property($Visual, 'offset', Vector2(0, 0), 1.5)
 
 func update_map_pos():
 	map_pos = map.world_to_map(position)
@@ -85,3 +95,7 @@ func set_region():
 func calc_zindex(map_position = map_pos):
 	z_index = -1 * (map_position.x * 20 - map_position.y * 2)
 	print(name + ": " + str(z_index))
+
+
+func _on_timer_timeout():
+	fall_down()

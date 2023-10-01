@@ -1,13 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3datkyaooy1e"]
+[gd_scene load_steps=16 format=3 uid="uid://d3datkyaooy1e"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_ppnei"]
 [ext_resource type="PackedScene" uid="uid://bg11qe7jf7od4" path="res://Components/GameObjects/Mover/mover.tscn" id="2_0vbdw"]
 [ext_resource type="Texture2D" uid="uid://bm4ve40ayvly7" path="res://Assets/Graphics/walls.png" id="2_lw28f"]
 [ext_resource type="PackedScene" uid="uid://dveedycejhwcf" path="res://Components/GameObjects/Apartment/apartment.tscn" id="2_qsjlf"]
-[ext_resource type="PackedScene" uid="uid://b1wqknj32y3gv" path="res://Components/GameObjects/Sofa/sofa.tscn" id="4_4rsif"]
 [ext_resource type="PackedScene" uid="uid://d4g312fn0bvrl" path="res://Components/UI/Vignette/vignette.tscn" id="6_7ieui"]
 [ext_resource type="PackedScene" uid="uid://rctxiilk5g5c" path="res://Components/GameObjects/Box/gnome_box.tscn" id="7_4xfpn"]
 [ext_resource type="Theme" uid="uid://bwlg4hp8pkxhf" path="res://Assets/Styles/game_theme.tres" id="7_mhf17"]
+[ext_resource type="PackedScene" uid="uid://br53bsdoi1yl0" path="res://Components/GameObjects/SofaL/sofa_l.tscn" id="7_untwi"]
+[ext_resource type="PackedScene" uid="uid://x7i6sb2a1v0d" path="res://Components/GameObjects/GnomeBox/gnome_box.tscn" id="8_u8pko"]
+[ext_resource type="PackedScene" uid="uid://b1wqknj32y3gv" path="res://Components/GameObjects/SofaTop/sofa.tscn" id="9_ppjf0"]
+[ext_resource type="PackedScene" uid="uid://ip0u5wkt8bv2" path="res://Components/GameObjects/RoundTable/round_table.tscn" id="10_r4tkk"]
+[ext_resource type="PackedScene" uid="uid://vnvgdr1mjoxp" path="res://Components/GameObjects/Wardrobe/wardrobe.tscn" id="11_fldrk"]
 
 [sub_resource type="Animation" id="Animation_21tl0"]
 resource_name = "Pulse"
@@ -52,7 +56,7 @@ metadata/_edit_lock_ = true
 
 [node name="Walls" type="Sprite2D" parent="."]
 z_index = -101
-position = Vector2(128, 520)
+position = Vector2(127, 538)
 texture = ExtResource("2_lw28f")
 offset = Vector2(2.08165e-12, -440)
 metadata/_edit_group_ = true
@@ -63,11 +67,11 @@ z_as_relative = false
 y_sort_enabled = false
 position = Vector2(2.08165e-12, 2.08165e-12)
 layer_0/y_sort_enabled = false
-layer_0/tile_data = PackedInt32Array(262142, 0, 0, 262141, 0, 0, 131069, 0, 0, 131068, 0, 0, 262140, 0, 0, 65533, 0, 0, 65532, 0, 0, 393214, 0, 0, 393213, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 393208, 0, 0, 393209, 0, 0, 327673, 0, 0, 262137, 0, 0, 65531, 0, 0, 393210, 0, 0, 65530, 0, 0, 131065, 0, 0, 327672, 0, 0, 65529, 0, 0, 196601, 0, 0, 196605, 0, 0, 196604, 0, 0, 196606, 0, 0, 65534, 0, 0, 131070, 0, 0, 393211, 0, 0, 393212, 0, 0, 327671, 0, 0, 393207, 0, 0, 262138, 0, 0, 262139, 0, 0, 458750, 0, 0, 458749, 0, 0, 458748, 0, 0, 524282, 0, 0, 524281, 0, 0, 458744, 0, 0, 458743, 0, 0, 458745, 0, 0, 524286, 0, 0, 524285, 0, 0, 524284, 0, 0, 524283, 0, 0, 524280, 0, 0, 524279, 0, 0, 196603, 0, 0, 196602, 0, 0, 327675, 0, 0, 327674, 0, 0, 393206, 0, 0, 393205, 0, 0, 458741, 0, 0, 458740, 0, 0, 393204, 0, 0, 327668, 0, 0, 327669, 0, 0, 262133, 0, 0, 262132, 0, 0, 262131, 0, 0, 327667, 0, 0, 393203, 0, 0, 458739, 0, 0, 589820, 0, 0, 589819, 0, 0, 655355, 0, 0, 655356, 0, 0, 720891, 0, 0, 720892, 0, 0, 786425, 0, 0, 786426, 0, 0, 786427, 0, 0, 786428, 0, 0, 786429, 0, 0, 851965, 0, 0, 851964, 0, 0, 851963, 0, 0, 851962, 0, 0, 851961, 0, 0, 917497, 0, 0, 917498, 0, 0, 917499, 0, 0, 917500, 0, 0, 917501, 0, 0, 917502, 0, 0, 851966, 0, 0, 786430, 0, 0, 983033, 0, 0, 983034, 0, 0, 983035, 0, 0, 983036, 0, 0, 983037, 0, 0, 983038, 0, 0, 1048569, 0, 0, 1048570, 0, 0, 1048571, 0, 0, 1048572, 0, 0, 1048573, 0, 0, 1048574, 0, 0, 327670, 0, 0, 524277, 0, 0, 524276, 0, 0, 524275, 0, 0, 65535, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, 327679, 0, 0, 393215, 0, 0, 458751, 0, 0, 524287, 0, 0)
+layer_0/tile_data = PackedInt32Array(262142, 131072, 0, 262141, 262144, 0, 131069, 262144, 0, 131068, 131072, 0, 262140, 131072, 0, 65533, 131072, 0, 65532, 262144, 0, 393214, 131072, 0, 393213, 262144, 0, 327676, 262144, 0, 327677, 131072, 0, 327678, 262144, 0, 393208, 131072, 0, 393209, 262144, 0, 327673, 131072, 0, 262137, 262144, 0, 65531, 131072, 0, 393210, 131072, 0, 65530, 262144, 0, 131065, 262144, 0, 327672, 262144, 1, 65529, 131072, 0, 196601, 131072, 0, 196605, 131072, 0, 196604, 262144, 0, 196606, 262144, 0, 65534, 262144, 0, 131070, 131072, 0, 393211, 262144, 0, 393212, 131072, 0, 327671, 131072, 0, 393207, 131072, 0, 458750, 262144, 0, 458749, 131072, 0, 458748, 262144, 0, 524282, 131072, 0, 458745, 131072, 0, 524286, 131072, 0, 524285, 262144, 0, 524284, 131072, 0, 524283, 262144, 0, 196603, 131072, 0, 196602, 262144, 0, 327675, 131072, 0, 327674, 262144, 0, 393206, 131072, 0, 393205, 196608, 1, 458741, 131072, 0, 458740, 196608, 1, 393204, 131072, 0, 327668, 196608, 1, 327669, 131072, 0, 262133, 196608, 1, 262132, 131072, 0, 262131, 196608, 1, 327667, 131072, 0, 393203, 196608, 1, 458739, 131072, 0, 589820, 196608, 65536, 589819, 196608, 65536, 655355, 196608, 65536, 655356, 196608, 65536, 720891, 196608, 65536, 720892, 196608, 65536, 786425, 262144, 1, 786426, 262144, 131073, 786427, 262144, 1, 786428, 262144, 131073, 786429, 262144, 1, 851965, 262144, 131073, 851964, 262144, 1, 851963, 262144, 131073, 851962, 262144, 1, 851961, 262144, 131073, 917497, 262144, 1, 917498, 262144, 131073, 917499, 262144, 1, 917500, 262144, 131073, 917501, 262144, 1, 917502, 262144, 131073, 851966, 262144, 1, 786430, 262144, 131073, 983033, 262144, 131073, 983034, 262144, 1, 983035, 262144, 131073, 983036, 262144, 1, 983037, 262144, 131073, 983038, 262144, 1, 327670, 131072, 0, 524277, 196608, 1, 524276, 131072, 0, 524275, 196608, 1, 65535, 131072, 0, 0, 262144, 0, 65536, 131072, 0, 131072, 262144, 0, 196608, 131072, 0, 262144, 262144, 0, 327680, 131072, 0, 393216, 262144, 0, 458752, 131072, 0, 131071, 262144, 0, 196607, 131072, 0, 262143, 262144, 0, 327679, 131072, 0, 393215, 262144, 0, 458751, 131072, 0, 524287, 262144, 0, 524281, 262144, 0, 131067, 262144, 0, 131066, 131072, 0, 262138, 131072, 0, 262139, 262144, 0)
 metadata/_edit_lock_ = true
 
-[node name="Sofa" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("4_4rsif")]
-position = Vector2(112, 344)
+[node name="Sofa" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("9_ppjf0")]
+position = Vector2(248, 112)
 map = NodePath("..")
 
 [node name="Mover" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("2_0vbdw")]
@@ -80,8 +84,42 @@ y_sort_enabled = false
 position = Vector2(-901, 1072)
 map = NodePath("..")
 
+[node name="SofaL" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("7_untwi")]
+position = Vector2(386, 632)
+map = NodePath("..")
+
+[node name="Box2" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("7_4xfpn")]
+position = Vector2(-400, 928)
+map = NodePath("..")
+
+[node name="GnomeBox" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("8_u8pko")]
+position = Vector2(-264, 1000)
+map = NodePath("..")
+
+[node name="Sofa2" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("9_ppjf0")]
+position = Vector2(-1040, 1152)
+map = NodePath("..")
+
+[node name="RoundTable" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("10_r4tkk")]
+position = Vector2(512, 701)
+map = NodePath("..")
+
+[node name="Wardrobe" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("11_fldrk")]
+position = Vector2(-392, 1072)
+map = NodePath("..")
+
+[node name="Label" type="Label" parent="Apartment"]
+offset_left = 1040.0
+offset_top = 1744.0
+offset_right = 1569.0
+offset_bottom = 1787.0
+rotation = -0.523598
+theme = ExtResource("7_mhf17")
+theme_override_font_sizes/font_size = 40
+text = "Move everything to this room"
+
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(536, 816)
+position = Vector2(171, 648)
 zoom = Vector2(0.3, 0.3)
 
 [node name="Screen" type="CanvasLayer" parent="."]

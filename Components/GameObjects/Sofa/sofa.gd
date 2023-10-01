@@ -23,11 +23,13 @@ func drop(new_shape):
 	super(new_shape)
 	print("NEW SHAPE: " + str(shape))
 	
-	draw_indicator()
+	#draw_indicator()
 
 func set_positions(positions, _angle = 0):
 	global_position = positions[0] 
 	map_pos = map.world_to_map(global_position)
+	
+	pick_offset = Vector2i(Vector2(pick_offset).rotated(_angle).round())
 	
 	if positions[0].x < positions[1].x and positions[0].y > positions[1].y:
 		$Visual.position = map.map_to_world(Vector2i(1,-1)) / 2
