@@ -1,5 +1,7 @@
 extends Node2D
 
+signal jumped
+
 const JUMP_DURATION = 0.2
 
 var Indicator = load("res://Components/GameObjects/Indicator/indicator.tscn")
@@ -15,13 +17,11 @@ var draggable = null
 
 var shape = [
 	Vector2i(0,0)
-	#Vector2i(0, -1),
-	#Vector2i(0, -2),
 ]
 
 func _ready():
 	map_pos = map.world_to_map(position)
-	#z_index = map_pos.y
+	calc_zindex(map_pos)
 	position = map.map_to_world(map_pos)
 	set_process_input(true)
 	draw_indicator()
@@ -67,7 +67,6 @@ func _input(event):
 			else:
 				rotate_to(v2dir.angle_to(Vector2.DOWN))
 	
-		
 	if event.is_action_pressed('ui_accept'):
 		if attached_object:
 			drop()
@@ -76,17 +75,31 @@ func _input(event):
 				pick(draggable)
 		
 func pick(object):
-	object.reparent($Attachment)
+	object.calc_zindex(map_pos + direction)
+	if object.z_index < z_index:
+		object.show_behind_parent = true
+	
 	attached_object = object
 	attached_object.pick(map_pos + direction)
+	if object.z_index < z_index:
+		object.show_behind_parent = true
 	attach_shape(object)
 	draw_indicator()
 	$AnimationPlayer.play("Hold")
 	draggable = null 
 	
 func drop():
-	attached_object.reparent(get_parent())
 	attached_object.drop(attachable_shape())
+	
+	var obj_positions = []
+	for shape_pos in shape:
+		if shape_pos != Vector2i(0,0):
+			obj_positions.append(map.map_to_world(map_pos + shape_pos))
+		
+	attached_object.set_positions(obj_positions, 0)
+	
+	print("ATTACHABLE POS: " + str(attached_object.map_pos))
+		
 	attached_object = null 
 	shape = [Vector2i(0,0)]
 	$AnimationPlayer.play("Idle")
@@ -158,6 +171,7 @@ func rotate_to(angle):
 				if shape_pos != Vector2i(0,0):
 					obj_positions.append(map.map_to_world(map_pos + shape_pos))
 			attached_object.set_positions(obj_positions, angle)
+			attached_object.calc_zindex()
 	else:
 		print("NO ROOM FOR ROTATE")
 
@@ -169,7 +183,12 @@ func move_to(new_map_pos: Vector2i):
 		
 func jump_to_map_pos(new_map_pos: Vector2i):
 	moving = true
-	#z_index = new_map_pos.y
+	emit_signal("jumped")
+
+	if attached_object:
+		attached_object.tween_to(attached_object.map_pos + new_map_pos - map_pos)
+		
+	calc_zindex(new_map_pos)
 	$AnimationPlayer.play("Jump")
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
@@ -186,14 +205,18 @@ func jump_to_map_pos(new_map_pos: Vector2i):
 			for shape_pos in shape:
 				if shape_pos != Vector2i(0,0):
 					obj_positions.append(map.map_to_world(map_pos + shape_pos))
-			attached_object.set_positions(obj_positions, 0))
+			attached_object.set_positions(obj_positions, 0)
+			attached_object.calc_zindex())
 
 func check_draggables():
 	draggable = map.object_at(map_pos + direction)
 	if draggable != null:
 		print("OBJECT AHEAD: " + str(draggable.name))
 
-
 func _on_animation_player_animation_finished(anim_name):
 	if !attached_object and !anim_name == "Hold":
 		$AnimationPlayer.play("Idle")
+
+func calc_zindex(map_position = map_pos):
+	z_index = -1 * (map_position.x * 20 - map_position.y * 2)
+	print("PLAYER Z: " + str(z_index))

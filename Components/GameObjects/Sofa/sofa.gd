@@ -13,6 +13,18 @@ func _init():
 	shape_size = Vector2(294, 248)
 	super()
 
+func pick(from_pos):
+	super(from_pos)
+	for old_indicator in $Indicator.get_children():
+		old_indicator.queue_free()
+	
+func drop(new_shape):
+	print("OLD SHAPE: " + str(shape))
+	super(new_shape)
+	print("NEW SHAPE: " + str(shape))
+	
+	draw_indicator()
+
 func set_positions(positions, _angle = 0):
 	global_position = positions[0] 
 	map_pos = map.world_to_map(global_position)
@@ -42,6 +54,7 @@ func draw_indicator():
 		
 	for shape_pos in shape:
 		var indicator = Indicator.instantiate()
+		indicator.modulate = Color('red')
 		$Indicator.add_child(indicator)
 		print(str(shape_pos) + " => " + str(map.map_to_world(Vector2i(shape_pos) + Vector2i(map_pos))))
 		indicator.global_position = map.map_to_world(Vector2i(shape_pos) + Vector2i(map_pos))

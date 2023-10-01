@@ -1,20 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0dq85cqfdvot"]
+[gd_scene load_steps=9 format=3 uid="uid://d0dq85cqfdvot"]
 
-[ext_resource type="Shader" path="res://Shaders/vignette.gdshader" id="1_c55u7"]
 [ext_resource type="Script" path="res://Scenes/menu.gd" id="1_gtbeh"]
 [ext_resource type="FontFile" uid="uid://cxsgcxrp0twbk" path="res://Assets/Fonts/dizzyedgeDEMO.otf" id="2_gtt2h"]
 [ext_resource type="Texture2D" uid="uid://coxcgvy2ynlbp" path="res://Assets/Graphics/light.png" id="3_inyya"]
+[ext_resource type="PackedScene" uid="uid://d4g312fn0bvrl" path="res://Components/UI/Vignette/vignette.tscn" id="3_jjcak"]
 [ext_resource type="PackedScene" uid="uid://cpm7fxu8ovn6y" path="res://Components/UI/Button/button.tscn" id="4_icwuc"]
 [ext_resource type="Shader" path="res://Shaders/plasma.gdshader" id="6_cfd41"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0edfc"]
 shader = ExtResource("6_cfd41")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ocfnm"]
-shader = ExtResource("1_c55u7")
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.253
-shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xs1ns"]
 font = ExtResource("2_gtt2h")
@@ -43,13 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Vignette" type="ColorRect" parent="ScreenLayer"]
-material = SubResource("ShaderMaterial_ocfnm")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Vignette" parent="ScreenLayer" instance=ExtResource("3_jjcak")]
 
 [node name="GameTitle" type="Label" parent="ScreenLayer"]
 anchors_preset = 10

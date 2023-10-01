@@ -1,8 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8i0igyc1316r"]
+[gd_scene load_steps=7 format=3 uid="uid://c8i0igyc1316r"]
 
 [ext_resource type="Script" path="res://Components/GameObjects/Furniture/furniture.gd" id="1_jl8e4"]
 [ext_resource type="Texture2D" uid="uid://cvoue6jm7t00t" path="res://Components/GameObjects/Furniture/tester.png" id="2_ukurg"]
 [ext_resource type="Texture2D" uid="uid://c431p4ooshyin" path="res://Components/GameObjects/Indicator/indicator.png" id="3_j7bax"]
+
+[sub_resource type="Animation" id="Animation_4ohbf"]
+resource_name = "Jump"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.329877, 1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, -30), Vector2(2.08165e-12, -50), Vector2(2.08165e-12, -30)]
+}
+
+[sub_resource type="Animation" id="Animation_dh6ow"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75lwv"]
+_data = {
+"Jump": SubResource("Animation_4ohbf"),
+"RESET": SubResource("Animation_dh6ow")
+}
 
 [node name="Furniture" type="Node2D" groups=["Blocker"]]
 y_sort_enabled = true
@@ -23,3 +60,8 @@ self_modulate = Color(0, 0, 0, 0.180392)
 position = Vector2(0, 8)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_j7bax")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_75lwv")
+}

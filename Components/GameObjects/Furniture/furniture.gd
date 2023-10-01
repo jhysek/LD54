@@ -1,5 +1,7 @@
 extends Node2D
 
+const JUMP_DURATION = 0.2
+
 var shape = [
 	Vector2i(0,0)
 ]
@@ -16,6 +18,7 @@ var pick_offset = Vector2(0,0)  # how far from map_pos was this furniture picked
 func _ready():
 	map_pos = map.world_to_map(position)
 	position = map.map_to_world(map_pos)
+	calc_zindex()
 	shape_size = $Visual.region_rect.size
 	set_region()
 
@@ -34,23 +37,23 @@ func tween_drop():
 	tween.set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property($Visual, 'offset', Vector2(0, 0), 0.3)
 
+func tween_to(new_map_pos):
+	calc_zindex(new_map_pos)
+	$AnimationPlayer.play("Jump")
+	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(self, 'position', map.map_to_world(new_map_pos), JUMP_DURATION)
+
 func pick(from_pos):
 	pick_offset = from_pos - map_pos
+	remove_from_group("Blocker")
 	tween_lift()
 	
 func drop(new_shape):
 	shape = new_shape
+	add_to_group("Blocker")
 	tween_drop()
-
-#func new_pivot_pos(pivot_pos, angle):
-#	map_pos = pivot_pos + pick_offset
-#	global_position = map.map_to_world(map_pos)
-#	
-#	if angle > 0:
-#		rotate_shape(Vector2i.RIGHT)
-#		
-#	if angle < 0:
-#		rotate_shape(Vector2i.LEFT)
 
 func set_positions(positions, angle = 0):
 	global_position = positions[0] 
@@ -79,4 +82,6 @@ func place_picture():
 func set_region():
 	$Visual.region_rect = Rect2(Vector2(shape_size.x * sprite_idx, 0), shape_size)
 
-		
+func calc_zindex(map_position = map_pos):
+	z_index = -1 * (map_position.x * 20 - map_position.y * 2)
+	print(name + ": " + str(z_index))
