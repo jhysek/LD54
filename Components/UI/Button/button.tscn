@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpm7fxu8ovn6y"]
+[gd_scene load_steps=5 format=3 uid="uid://cpm7fxu8ovn6y"]
 
 [ext_resource type="Theme" uid="uid://bwlg4hp8pkxhf" path="res://Assets/Styles/game_theme.tres" id="1_yfsrb"]
 [ext_resource type="Script" path="res://Components/UI/Button/button.gd" id="2_6wnai"]
+[ext_resource type="AudioStream" uid="uid://ohlhqvpemu72" path="res://Components/UI/Button/hover.wav" id="3_mjiu1"]
+[ext_resource type="AudioStream" uid="uid://ca6xjpv1lg8kc" path="res://Components/UI/Button/click.wav" id="4_3iit6"]
 
 [node name="StarButton" type="Button"]
 anchors_preset = 8
@@ -22,9 +24,11 @@ script = ExtResource("2_6wnai")
 [node name="Sfx" type="Node" parent="."]
 
 [node name="Hover" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("3_mjiu1")
 max_polyphony = 2
 
 [node name="Click" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("4_3iit6")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

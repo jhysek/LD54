@@ -1,8 +1,10 @@
 extends Node2D
 
 signal jumped
+signal picked
+signal dropped
 
-const JUMP_DURATION = 0.2
+const JUMP_DURATION = 0.1
 
 var Indicator = load("res://Components/GameObjects/Indicator/indicator.tscn")
 
@@ -14,6 +16,7 @@ var map_pos = Vector2i(0,0)
 var direction = Vector2i.UP
 var attached_object = null
 var draggable = null
+var frozen = false
 
 var shape = [
 	Vector2i(0,0)
@@ -28,6 +31,9 @@ func _ready():
 	draw_direction()
 
 func _input(event):		
+	if frozen:
+		return
+		
 	var v2dir = Vector2(direction)
 	
 	if turtle_controls:			
@@ -85,12 +91,14 @@ func pick(object):
 		object.show_behind_parent = true
 	attach_shape(object)
 	draw_indicator()
+	emit_signal('picked')
+	$Sfx/lift.play()
 	$AnimationPlayer.play("Hold")
 	draggable = null 
 	
 func drop():
 	attached_object.drop(attachable_shape())
-	
+	emit_signal('dropped')
 	var obj_positions = []
 	for shape_pos in shape:
 		if shape_pos != Vector2i(0,0):
@@ -164,12 +172,18 @@ func rotate_to(angle):
 		new_shape.append(Vector2i(new_vector.round()))
 		
 	if map.is_room_for(self, map_pos, new_shape):
+		if attached_object != null and !map.can_rotate(self, new_shape, angle):
+			play_sfx('ee', 5)
+			print("YOU DON'T HAVE ROOM FOR ROTATION!")
+			return
 		direction = Vector2i(Vector2(direction).rotated(angle))
 		shape = new_shape
 		draw_indicator()
 		draw_direction()
 		check_draggables()
 		if attached_object != null:
+			$Sfx/turn.pitch_scale = randf_range(0.1,0.2) + 0.9
+			$Sfx/turn.play()
 			var obj_positions = []
 			for shape_pos in shape:
 				if shape_pos != Vector2i(0,0):
@@ -180,6 +194,9 @@ func rotate_to(angle):
 		print("NO ROOM FOR ROTATE")
 
 func move_to(new_map_pos: Vector2i):
+	if moving:
+		return
+		
 	if map.is_room_for(self, new_map_pos, shape):
 		jump_to_map_pos(new_map_pos)
 	else:
@@ -194,6 +211,7 @@ func jump_to_map_pos(new_map_pos: Vector2i):
 		
 	calc_zindex(new_map_pos)
 	$AnimationPlayer.play("Jump")
+	$Sfx/jump.play()
 	var tween = get_tree().create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)
@@ -224,3 +242,15 @@ func _on_animation_player_animation_finished(anim_name):
 func calc_zindex(map_position = map_pos):
 	z_index = -1 * (map_position.x * 20 - map_position.y * 2)
 	print("PLAYER Z: " + str(z_index))
+
+func freeze():
+	frozen = true
+	$AnimationPlayer.play("Idle")
+
+func play_sfx(name, variations = 0):
+	if variations > 0:
+		var variation = randi_range(0, variations) + 1
+		if $Sfx.has_node(name + str(variation)):
+			$Sfx.get_node(name + str(variation)).play()
+		else:
+			print("ERROR: MISSING SFX NODE " +  str(variation))

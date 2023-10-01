@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8i0igyc1316r"]
+[gd_scene load_steps=8 format=3 uid="uid://c8i0igyc1316r"]
 
 [ext_resource type="Script" path="res://Components/GameObjects/Furniture/furniture.gd" id="1_jl8e4"]
 [ext_resource type="Texture2D" uid="uid://cvoue6jm7t00t" path="res://Components/GameObjects/Furniture/tester.png" id="2_ukurg"]
 [ext_resource type="Texture2D" uid="uid://c431p4ooshyin" path="res://Components/GameObjects/Indicator/indicator.png" id="3_j7bax"]
+[ext_resource type="AudioStream" uid="uid://xjsbaigy25xr" path="res://Components/GameObjects/Furniture/drop_furniture.wav" id="4_dj4ac"]
 
 [sub_resource type="Animation" id="Animation_4ohbf"]
 resource_name = "Jump"
@@ -68,5 +69,10 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Sfx" type="Node" parent="."]
+
+[node name="Drop" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("4_dj4ac")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,16 +1,19 @@
 extends Button
 
 signal clicked
+var  active = true
 
 func _on_mouse_entered():
-	$Sfx/Hover.play()
+	if active:
+		$Sfx/Hover.play()
 
 func _on_mouse_exited():
-	$Sfx/Hover.play()
+	if active:
+		$Sfx/Hover.play()
 
 func _on_pressed():
-	_on_click_finished()
-	#$Sfx/Click.play()
+	if active:
+		$Sfx/Click.play()
 
 func _on_click_finished():
 	emit_signal("clicked")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bg11qe7jf7od4"]
+[gd_scene load_steps=34 format=3 uid="uid://bg11qe7jf7od4"]
 
 [ext_resource type="Script" path="res://Components/GameObjects/Mover/mover.gd" id="1_hb6x3"]
 [ext_resource type="Texture2D" uid="uid://lqqinbkadlyr" path="res://Components/GameObjects/Mover/up.png" id="3_vwqt1"]
@@ -20,6 +20,14 @@
 [ext_resource type="Texture2D" uid="uid://b04yn047aogka" path="res://Components/GameObjects/Mover/body-back.png" id="17_ynbub"]
 [ext_resource type="Texture2D" uid="uid://dsrpxw45b8nsg" path="res://Components/GameObjects/Mover/head-back-4.png" id="18_qinid"]
 [ext_resource type="Texture2D" uid="uid://c0rltmljqh716" path="res://Components/GameObjects/Mover/arm-top-back.png" id="19_ip20c"]
+[ext_resource type="AudioStream" uid="uid://cq6l664kdxtpn" path="res://Components/GameObjects/Mover/ee1.wav" id="21_udn35"]
+[ext_resource type="AudioStream" uid="uid://deldexhxipdhx" path="res://Components/GameObjects/Mover/ee2.wav" id="22_e06a0"]
+[ext_resource type="AudioStream" uid="uid://dpovaw5x4pk14" path="res://Components/GameObjects/Mover/ee3.wav" id="23_pywtx"]
+[ext_resource type="AudioStream" uid="uid://4qsllcq02yny" path="res://Components/GameObjects/Mover/ee4.wav" id="24_q5dg1"]
+[ext_resource type="AudioStream" uid="uid://bg0upa16jmla2" path="res://Components/GameObjects/Mover/ee5.wav" id="25_6n84n"]
+[ext_resource type="AudioStream" uid="uid://b3fvov8mstawr" path="res://Components/GameObjects/Mover/turn.wav" id="26_mp65e"]
+[ext_resource type="AudioStream" uid="uid://4sc0rf6d5t5f" path="res://Components/GameObjects/Mover/lift.wav" id="27_66ulh"]
+[ext_resource type="AudioStream" uid="uid://cuurc847dspat" path="res://Components/GameObjects/Mover/jump.wav" id="27_qtyan"]
 
 [sub_resource type="Animation" id="Animation_746ht"]
 resource_name = "Hold"
@@ -811,5 +819,33 @@ autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_fr6g6")
 }
+
+[node name="Sfx" type="Node" parent="."]
+
+[node name="ee1" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("21_udn35")
+
+[node name="ee2" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("22_e06a0")
+
+[node name="ee3" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("23_pywtx")
+
+[node name="ee4" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("24_q5dg1")
+
+[node name="ee5" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("25_6n84n")
+
+[node name="turn" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("26_mp65e")
+volume_db = -10.88
+
+[node name="jump" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("27_qtyan")
+volume_db = -12.48
+
+[node name="lift" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("27_66ulh")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3datkyaooy1e"]
+[gd_scene load_steps=20 format=3 uid="uid://d3datkyaooy1e"]
 
 [ext_resource type="Script" path="res://Scenes/game.gd" id="1_ppnei"]
 [ext_resource type="PackedScene" uid="uid://bg11qe7jf7od4" path="res://Components/GameObjects/Mover/mover.tscn" id="2_0vbdw"]
@@ -9,9 +9,12 @@
 [ext_resource type="Theme" uid="uid://bwlg4hp8pkxhf" path="res://Assets/Styles/game_theme.tres" id="7_mhf17"]
 [ext_resource type="PackedScene" uid="uid://br53bsdoi1yl0" path="res://Components/GameObjects/SofaL/sofa_l.tscn" id="7_untwi"]
 [ext_resource type="PackedScene" uid="uid://x7i6sb2a1v0d" path="res://Components/GameObjects/GnomeBox/gnome_box.tscn" id="8_u8pko"]
-[ext_resource type="PackedScene" uid="uid://b1wqknj32y3gv" path="res://Components/GameObjects/SofaTop/sofa.tscn" id="9_ppjf0"]
 [ext_resource type="PackedScene" uid="uid://ip0u5wkt8bv2" path="res://Components/GameObjects/RoundTable/round_table.tscn" id="10_r4tkk"]
 [ext_resource type="PackedScene" uid="uid://vnvgdr1mjoxp" path="res://Components/GameObjects/Wardrobe/wardrobe.tscn" id="11_fldrk"]
+[ext_resource type="PackedScene" uid="uid://c8i0igyc1316r" path="res://Components/GameObjects/Furniture/furniture.tscn" id="12_31jnj"]
+[ext_resource type="PackedScene" uid="uid://b1wqknj32y3gv" path="res://Components/GameObjects/Sofa/sofa.tscn" id="13_gish6"]
+[ext_resource type="PackedScene" uid="uid://cpm7fxu8ovn6y" path="res://Components/UI/Button/button.tscn" id="13_tmt6y"]
+[ext_resource type="AudioStream" uid="uid://64cs4o7af3fj" path="res://Assets/Audio/music.mp3" id="15_0i28a"]
 
 [sub_resource type="Animation" id="Animation_21tl0"]
 resource_name = "Pulse"
@@ -50,6 +53,18 @@ _data = {
 "RESET": SubResource("Animation_g82ya")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1hax"]
+bg_color = Color(0.968627, 0.917647, 0.843137, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ppnei")
 metadata/_edit_lock_ = true
@@ -67,12 +82,8 @@ z_as_relative = false
 y_sort_enabled = false
 position = Vector2(2.08165e-12, 2.08165e-12)
 layer_0/y_sort_enabled = false
-layer_0/tile_data = PackedInt32Array(262142, 131072, 0, 262141, 262144, 0, 131069, 262144, 0, 131068, 131072, 0, 262140, 131072, 0, 65533, 131072, 0, 65532, 262144, 0, 393214, 131072, 0, 393213, 262144, 0, 327676, 262144, 0, 327677, 131072, 0, 327678, 262144, 0, 393208, 131072, 0, 393209, 262144, 0, 327673, 131072, 0, 262137, 262144, 0, 65531, 131072, 0, 393210, 131072, 0, 65530, 262144, 0, 131065, 262144, 0, 327672, 262144, 1, 65529, 131072, 0, 196601, 131072, 0, 196605, 131072, 0, 196604, 262144, 0, 196606, 262144, 0, 65534, 262144, 0, 131070, 131072, 0, 393211, 262144, 0, 393212, 131072, 0, 327671, 131072, 0, 393207, 131072, 0, 458750, 262144, 0, 458749, 131072, 0, 458748, 262144, 0, 524282, 131072, 0, 458745, 131072, 0, 524286, 131072, 0, 524285, 262144, 0, 524284, 131072, 0, 524283, 262144, 0, 196603, 131072, 0, 196602, 262144, 0, 327675, 131072, 0, 327674, 262144, 0, 393206, 131072, 0, 393205, 196608, 1, 458741, 131072, 0, 458740, 196608, 1, 393204, 131072, 0, 327668, 196608, 1, 327669, 131072, 0, 262133, 196608, 1, 262132, 131072, 0, 262131, 196608, 1, 327667, 131072, 0, 393203, 196608, 1, 458739, 131072, 0, 589820, 196608, 65536, 589819, 196608, 65536, 655355, 196608, 65536, 655356, 196608, 65536, 720891, 196608, 65536, 720892, 196608, 65536, 786425, 262144, 1, 786426, 262144, 131073, 786427, 262144, 1, 786428, 262144, 131073, 786429, 262144, 1, 851965, 262144, 131073, 851964, 262144, 1, 851963, 262144, 131073, 851962, 262144, 1, 851961, 262144, 131073, 917497, 262144, 1, 917498, 262144, 131073, 917499, 262144, 1, 917500, 262144, 131073, 917501, 262144, 1, 917502, 262144, 131073, 851966, 262144, 1, 786430, 262144, 131073, 983033, 262144, 131073, 983034, 262144, 1, 983035, 262144, 131073, 983036, 262144, 1, 983037, 262144, 131073, 983038, 262144, 1, 327670, 131072, 0, 524277, 196608, 1, 524276, 131072, 0, 524275, 196608, 1, 65535, 131072, 0, 0, 262144, 0, 65536, 131072, 0, 131072, 262144, 0, 196608, 131072, 0, 262144, 262144, 0, 327680, 131072, 0, 393216, 262144, 0, 458752, 131072, 0, 131071, 262144, 0, 196607, 131072, 0, 262143, 262144, 0, 327679, 131072, 0, 393215, 262144, 0, 458751, 131072, 0, 524287, 262144, 0, 524281, 262144, 0, 131067, 262144, 0, 131066, 131072, 0, 262138, 131072, 0, 262139, 262144, 0)
+layer_0/tile_data = PackedInt32Array(262142, 131072, 0, 262141, 262144, 0, 131069, 262144, 0, 131068, 131072, 0, 262140, 131072, 0, 65533, 131072, 0, 65532, 262144, 0, 393214, 131072, 0, 393213, 262144, 0, 327676, 262144, 0, 327677, 131072, 0, 327678, 262144, 0, 393208, 131072, 0, 393209, 262144, 0, 327673, 131072, 0, 262137, 262144, 0, 65531, 131072, 0, 393210, 131072, 0, 65530, 262144, 0, 131065, 262144, 0, 327672, 131072, 0, 65529, 131072, 0, 196601, 131072, 0, 196605, 131072, 0, 196604, 262144, 0, 196606, 262144, 0, 65534, 262144, 0, 131070, 131072, 0, 393211, 262144, 0, 393212, 131072, 0, 327671, 131072, 0, 393207, 131072, 0, 458750, 262144, 0, 458749, 131072, 0, 458748, 262144, 0, 524282, 131072, 0, 458745, 131072, 0, 524286, 131072, 0, 524285, 262144, 0, 524284, 131072, 0, 524283, 262144, 0, 196603, 131072, 0, 196602, 262144, 0, 327675, 131072, 0, 327674, 262144, 0, 393206, 131072, 0, 393205, 196608, 1, 458741, 131072, 0, 458740, 196608, 1, 393204, 131072, 0, 327668, 196608, 1, 327669, 131072, 0, 262133, 196608, 1, 262132, 131072, 0, 262131, 196608, 1, 327667, 131072, 0, 393203, 196608, 1, 458739, 131072, 0, 589820, 196608, 65536, 589819, 196608, 65536, 655355, 196608, 65536, 655356, 196608, 65536, 720891, 196608, 65536, 720892, 196608, 65536, 786425, 262144, 1, 786426, 262144, 131073, 786427, 262144, 1, 786428, 262144, 131073, 786429, 262144, 1, 851965, 262144, 131073, 851964, 262144, 1, 851963, 262144, 131073, 851962, 262144, 1, 851961, 262144, 131073, 917497, 262144, 1, 917498, 262144, 131073, 917499, 262144, 1, 917500, 262144, 131073, 917501, 262144, 1, 917502, 262144, 131073, 851966, 262144, 1, 786430, 262144, 131073, 983033, 262144, 131073, 983034, 262144, 1, 983035, 262144, 131073, 983036, 262144, 1, 983037, 262144, 131073, 983038, 262144, 1, 327670, 131072, 0, 524277, 196608, 1, 524276, 131072, 0, 524275, 196608, 1, 65535, 131072, 0, 0, 262144, 0, 65536, 131072, 0, 131072, 262144, 0, 196608, 131072, 0, 262144, 262144, 0, 327680, 131072, 0, 393216, 262144, 0, 458752, 131072, 0, 131071, 262144, 0, 196607, 131072, 0, 262143, 262144, 0, 327679, 131072, 0, 393215, 262144, 0, 458751, 131072, 0, 524287, 262144, 0, 524281, 262144, 0, 131067, 262144, 0, 131066, 131072, 0)
 metadata/_edit_lock_ = true
-
-[node name="Sofa" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("9_ppjf0")]
-position = Vector2(248, 112)
-map = NodePath("..")
 
 [node name="Mover" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("2_0vbdw")]
 z_index = 1
@@ -81,11 +92,11 @@ map = NodePath("..")
 
 [node name="Box" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("7_4xfpn")]
 y_sort_enabled = false
-position = Vector2(-901, 1072)
+position = Vector2(1544, 1152)
 map = NodePath("..")
 
 [node name="SofaL" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("7_untwi")]
-position = Vector2(386, 632)
+position = Vector2(-8, 114)
 map = NodePath("..")
 
 [node name="Box2" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("7_4xfpn")]
@@ -94,10 +105,6 @@ map = NodePath("..")
 
 [node name="GnomeBox" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("8_u8pko")]
 position = Vector2(-264, 1000)
-map = NodePath("..")
-
-[node name="Sofa2" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("9_ppjf0")]
-position = Vector2(-1040, 1152)
 map = NodePath("..")
 
 [node name="RoundTable" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("10_r4tkk")]
@@ -109,14 +116,39 @@ position = Vector2(-392, 1072)
 map = NodePath("..")
 
 [node name="Label" type="Label" parent="Apartment"]
-offset_left = 1040.0
-offset_top = 1744.0
-offset_right = 1569.0
-offset_bottom = 1787.0
+modulate = Color(1, 0.945098, 0.870588, 1)
+offset_left = 504.0
+offset_top = 1456.0
+offset_right = 1165.0
+offset_bottom = 1510.0
+rotation = 0.523598
+theme = ExtResource("7_mhf17")
+theme_override_font_sizes/font_size = 44
+text = "Move everything to this room"
+
+[node name="Controls" type="Label" parent="Apartment"]
+modulate = Color(1, 0.945098, 0.870588, 1)
+offset_left = -968.0
+offset_top = 80.0
+offset_right = -307.0
+offset_bottom = 174.0
 rotation = -0.523598
 theme = ExtResource("7_mhf17")
-theme_override_font_sizes/font_size = 40
-text = "Move everything to this room"
+theme_override_font_sizes/font_size = 44
+text = "MOVE  ... arrows / WASD
+pick / drop ... SPACEBAR"
+
+[node name="Furniture" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("12_31jnj")]
+position = Vector2(-528, 408)
+map = NodePath("..")
+
+[node name="Sofa" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("13_gish6")]
+position = Vector2(-16, 272)
+map = NodePath("..")
+
+[node name="Sofa2" parent="Apartment" node_paths=PackedStringArray("map") instance=ExtResource("13_gish6")]
+position = Vector2(-920, 1080)
+map = NodePath("..")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(171, 648)
@@ -139,3 +171,84 @@ text = "Steps: 0"
 libraries = {
 "": SubResource("AnimationLibrary_cx8c0")
 }
+
+[node name="Finished" type="Panel" parent="Screen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = -206.0
+offset_right = 296.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_mhf17")
+theme_override_styles/panel = SubResource("StyleBoxFlat_i1hax")
+
+[node name="Label" type="Label" parent="Screen/Finished"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 6.0
+offset_right = 490.0
+offset_bottom = 60.0
+rotation = -0.0928252
+theme = ExtResource("7_mhf17")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 50
+text = "Congratulations!"
+
+[node name="Label2" type="Label" parent="Screen/Finished"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 86.0
+offset_right = 552.0
+offset_bottom = 242.0
+theme = ExtResource("7_mhf17")
+theme_override_colors/font_color = Color(0.188235, 0.188235, 0.188235, 0.858824)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 35
+text = "You moved your apartment in 
+
+230 steps.
+
+Not bad!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StarButton" parent="Screen/Finished" instance=ExtResource("13_tmt6y")]
+layout_mode = 1
+offset_left = -112.0
+offset_top = 111.0
+offset_right = 105.0
+offset_bottom = 174.0
+text = "Play again"
+
+[node name="HSlider" type="HSlider" parent="Screen"]
+offset_left = 1160.0
+offset_top = 25.0
+offset_right = 1248.0
+offset_bottom = 41.0
+max_value = 50.0
+value = 40.0
+
+[node name="Label" type="Label" parent="Screen/HSlider"]
+modulate = Color(1, 1, 1, 0.584314)
+layout_mode = 0
+offset_left = -104.0
+offset_top = 2.0
+offset_right = -8.0
+offset_bottom = 25.0
+theme = ExtResource("7_mhf17")
+text = "music volume"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_0i28a")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="clicked" from="Screen/Finished/StarButton" to="." method="_on_star_button_clicked"]
+[connection signal="value_changed" from="Screen/HSlider" to="." method="_on_h_slider_value_changed"]

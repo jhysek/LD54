@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dveedycejhwcf"]
+[gd_scene load_steps=6 format=3 uid="uid://dveedycejhwcf"]
 
 [ext_resource type="Texture2D" uid="uid://bbqc683timahl" path="res://Components/GameObjects/Apartment/tileset.png" id="1_k8b1v"]
 [ext_resource type="Script" path="res://Components/GameObjects/Apartment/apartment.gd" id="1_vevo0"]
+[ext_resource type="PackedScene" uid="uid://clb1calvqo18f" path="res://Components/GameObjects/Indicator/indicator.tscn" id="3_6kx1c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eftoo"]
 texture = ExtResource("1_k8b1v")
@@ -40,3 +41,8 @@ format = 2
 layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(65536, 0, 0, 0, 0, 0, 65535, 0, 0, 131071, 0, 0, 131072, 0, 0, 196608, 0, 0, 131073, 0, 0, 262144, 0, 0, 262143, 0, 0, 196607, 0, 0, 131070, 0, 0, 327679, 0, 0, 393214, 0, 0, 327678, 0, 0, 393213, 0, 0, 327677, 0, 0, 262141, 0, 0, 196606, 0, 0, 262142, 0, 0, 393215, 0, 0, 196609, 0, 0, 65537, 0, 0, 1, 0, 0, -65535, 0, 0, -131071, 0, 0, -65536, 0, 0, 327676, 0, 0, 262140, 0, 0, 196605, 0, 0, 131069, 0, 0, 196604, 0, 0, 131068, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, -2, 0, 0, -1, 0, 0, -3, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -65539, 0, 0, -65540, 0, 0, -4, 0, 0, 327680, 0, 0, 262145, 0, 0, 327681, 0, 0, 393212, 0, 0)
 script = ExtResource("1_vevo0")
+
+[node name="ObstacleIndicator" parent="." instance=ExtResource("3_6kx1c")]
+modulate = Color(1, 0.368627, 0.368627, 0.580392)
+top_level = true
+position = Vector2(256, 856)

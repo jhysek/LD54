@@ -1,6 +1,6 @@
 extends Node2D
 
-const JUMP_DURATION = 0.2
+const JUMP_DURATION = 0.1
 
 var shape = [
 	Vector2i(0,0)
@@ -46,6 +46,8 @@ func tween_drop():
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property($Visual, 'offset', Vector2(0, 0), 0.3)
+	$Sfx/Drop.pitch_scale = 0.9 + randf_range(0, 0.2)
+	$Sfx/Drop.play()
 
 func tween_to(new_map_pos):
 	calc_zindex(new_map_pos)
